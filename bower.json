@@ -4,6 +4,8 @@
   "dependencies": {},
   "devDependencies": {
     "qunit": "~1.12.0",
-    "jquery": "~1.10"
+    "jquery": "~1.10",
+    "sinonjs": "~1.7.3",
+    "sinon-qunit": "~1.0.0"
   }
 }
