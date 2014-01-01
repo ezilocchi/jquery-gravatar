@@ -20,43 +20,54 @@
       throws(block, [expected], [message])
   */
 
-  module('jQuery#awesome', {
-    // This will run before each test in this module.
+  module('jQuery.gravatar', {
     setup: function() {
-      this.elems = $('#qunit-fixture').children();
+      this.options = {
+        profile: 'myProfile',
+        success: function() {},
+        complete: function() {},
+        error: function() {}
+      };
     }
   });
 
-  test('is chainable', function() {
-    expect(1);
-    // Not a bad test to run on collection methods.
-    strictEqual(this.elems.awesome(), this.elems, 'should be chainable');
+  test('perform an AJAX request for the given profile', function() {
+    expect(5);
+    this.spy($, 'ajax');
+
+    $.gravatar(this.options);
+
+    ok($.ajax.calledOnce);
+    equal($.ajax.getCall(0).args[0].url, 'http://en.gravatar.com/myProfile.json');
+    equal($.ajax.getCall(0).args[0].dataType, 'JSONP');
+    equal($.ajax.getCall(0).args[0].crossDomain, true);
+    equal($.ajax.getCall(0).args[0].method, 'GET');
   });
 
-  test('is awesome', function() {
-    expect(1);
-    strictEqual(this.elems.awesome().text(), 'awesome0awesome1awesome2', 'should be awesome');
+  test('call success with the profile information for a successfully request', function() {
+    var myProfile = { displayName: 'My Name' };
+    var response = { entry: [ myProfile ] };
+
+    this.stub($, 'ajax').yieldsTo('success', response);
+    this.mock(this.options).expects('success').calledWith(myProfile);
+
+    $.gravatar(this.options);
   });
 
-  module('jQuery.awesome');
+  test('call complete after the AJAX request has finished', function() {
+    this.stub($, 'ajax').yieldsTo('complete');
 
-  test('is awesome', function() {
-    expect(2);
-    strictEqual($.awesome(), 'awesome.', 'should be awesome');
-    strictEqual($.awesome({punctuation: '!'}), 'awesome!', 'should be thoroughly awesome');
+    this.mock(this.options).expects('complete').once();
+
+    $.gravatar(this.options);
   });
 
-  module(':awesome selector', {
-    // This will run before each test in this module.
-    setup: function() {
-      this.elems = $('#qunit-fixture').children();
-    }
-  });
+  test('call error for a unsuccessfully request', function() {
+    this.stub($, 'ajax').yieldsTo('error');
 
-  test('is awesome', function() {
-    expect(1);
-    // Use deepEqual & .get() when comparing jQuery objects.
-    deepEqual(this.elems.filter(':awesome').get(), this.elems.last().get(), 'knows awesome when it sees it');
+    this.mock(this.options).expects('error').once();
+
+    $.gravatar(this.options);
   });
 
 }(jQuery));
