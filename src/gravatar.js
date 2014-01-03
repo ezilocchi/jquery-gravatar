@@ -8,12 +8,6 @@
 
 (function ($) {
 
-  $.fn.gravatar = function () {
-    return this.each(function () {
-      $(this);
-    });
-  };
-
   $.gravatar = function (options) {
     $.ajax({
       method: "GET",
@@ -27,6 +21,20 @@
       complete: options.complete,
       error: options.error
     });
+  };
+
+  $.fn.gravatar = function (profile) {
+    var that = this;
+    var options = {
+      profile: profile,
+      success: function(profile) {
+        that.each(function () {
+          $(this).find('.displayName').text(profile.displayName);
+        });
+      }
+    };
+    $.gravatar(options);
+    return this.each(function () { $(this); });
   };
 
 }(jQuery));

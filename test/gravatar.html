@@ -13,6 +13,7 @@
   <!-- Load local lib and tests. -->
   <script src="../src/gravatar.js"></script>
   <script src="gravatar_test.js"></script>
+  <script src="gravatar_plugin_test.js"></script>
   <!-- Removing access to jQuery and $. But it'll still be available as _$, if
        you REALLY want to mess around with jQuery in the console. REMEMBER WE
        ARE TESTING A PLUGIN HERE, THIS HELPS ENSURE BEST PRACTICES. REALLY. -->
@@ -21,9 +22,11 @@
 <body>
   <div id="qunit"></div>
   <div id="qunit-fixture">
-    <span>lame test markup</span>
-    <span>normal test markup</span>
-    <span>awesome test markup</span>
+    <div id="my-gravatar-profile">
+      <div class="gravatar">
+        <div class="displayName"></div>
+      </div>
+    </div>
   </div>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Gravatar jQuery Plugin Demo</title>
+
+  <script src="bower_components/jquery/jquery.js"></script>
+  <script src="src/gravatar.js"></script>
+</head>
+<body>
+  <div id="content">
+    <label for="gravatar-profile">Profile</label>
+    <input id="gravatar-profile" name="gravatar-profile"/>
+    <button id="submit">Get Gravatar</button>
+
+    <div class="gravatar">
+      <div class="displayName"></div>
+    </div>
+  </div>
+
+  <script>
+    $(function() {
+      $('#submit').on('click', function() {
+        var profile = $('#gravatar-profile').val();
+        $('.gravatar').gravatar(profile);
+      });
+    });
+  </script>
+</body>
+</html>

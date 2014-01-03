@@ -70,4 +70,23 @@
     $.gravatar(this.options);
   });
 
+  module('jQuery#gravatar', {
+    setup: function() {
+      this.fixture = $('#qunit-fixture').children();
+    }
+  });
+
+  test('is chainable', function() {
+    expect(1);
+    strictEqual(this.fixture.gravatar({}), this.fixture, 'should be chainable');
+  });
+
+  test('get the gravatar info for the given profile', function() {
+    var options = { profile: 'myProfile' };
+
+    this.mock($).expects('gravatar').calledWith(options);
+
+    $('<div class="gravatar"></div>').gravatar(options);
+  });
+
 }(jQuery));
