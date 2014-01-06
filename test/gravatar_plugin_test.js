@@ -8,9 +8,20 @@
       this.expectedDisplayName = 'My Name';
       this.expectedThumbnailUrl = 'my/thumbnail/url';
 
+      this.myGithubUrl = {
+          "value":"http://github.com/myProfileOnGithub",
+          "title":"on Github"
+        };
+      this.myLinkedinUrl = {
+          "value":"http://www.linkedin.com/in/myProfileOnLinkedin",
+          "title":"on LinkedIn"
+        };
+      this.expectedUrls = [ this.myGithubUrl, this.myLinkedinUrl ];
+
       var expectedProfile = {
         displayName: this.expectedDisplayName,
-        thumbnailUrl: this.expectedThumbnailUrl
+        thumbnailUrl: this.expectedThumbnailUrl,
+        urls: this.expectedUrls
       };
 
       this.response = { entry: [ expectedProfile ] };
@@ -21,7 +32,7 @@
     expect(1);
     this.stub($, 'ajax').yieldsTo('success', this.response);
 
-    var myGravatar = this.fixture.find('#profile-with-image-thumbnail .gravatar').gravatar(this.profile);
+    var myGravatar = this.fixture.find('#gravatar-profile .gravatar').gravatar(this.profile);
 
     var displayName = myGravatar.find('.displayName').text();
 
@@ -32,7 +43,7 @@
     expect(1);
     this.stub($, 'ajax').yieldsTo('success', this.response);
 
-    var myGravatar = this.fixture.find('#profile-with-image-thumbnail .gravatar').gravatar(this.profile);
+    var myGravatar = this.fixture.find('#gravatar-profile .gravatar').gravatar(this.profile);
 
     var thumbnailUrl = myGravatar.find('img.thumbnailUrl').attr('src');
 
@@ -49,6 +60,22 @@
     var thumbnailUrl = thumbnailUrlContainer.find('img').attr('src');
 
     equal(thumbnailUrl, this.expectedThumbnailUrl, 'should render the thumbnail url');
+  });
+
+  test('link list', function() {
+    expect(4);
+    this.stub($, 'ajax').yieldsTo('success', this.response);
+
+    var myGravatar = this.fixture.find('#gravatar-profile .gravatar').gravatar(this.profile);
+
+    var urls = myGravatar.find('.urls ul li a');
+    var githubUrl = urls.first();
+    var linkedinUrl = urls.last();
+
+    equal(githubUrl.text(), this.myGithubUrl.title, 'should render the url title as text');
+    equal(githubUrl.attr('href'), this.myGithubUrl.value, 'should render the url value as a.href');
+    equal(linkedinUrl.text(), this.myLinkedinUrl.title, 'should render the url title as text');
+    equal(linkedinUrl.attr('href'), this.myLinkedinUrl.value, 'should render the url value as a.href');
   });
 
 }(jQuery));

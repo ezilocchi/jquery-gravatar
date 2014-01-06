@@ -38,6 +38,14 @@
             var image = $('<img></img>').attr('src', profile.thumbnailUrl);
             thumbnail.append(image);
           }
+
+          var list = $('<ul class="urls"></ul>');
+          $.each(profile.urls, function() {
+            var a = $('<a target="_blank"></a>').attr('href', this.value).text(this.title);
+            var li = $('<li class="url"></li>').append(a);
+            list.append(li);
+          });
+          $(this).find('.urls').append(list);
         });
       }
     };
