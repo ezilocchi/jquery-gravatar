@@ -30,6 +30,14 @@
       success: function(profile) {
         that.each(function () {
           $(this).find('.displayName').text(profile.displayName);
+
+          var thumbnail = $(this).find('.thumbnailUrl');
+          if(thumbnail.prop('tagName') === 'IMG') {
+            thumbnail.attr('src', profile.thumbnailUrl);
+          } else {
+            var image = $('<img></img>').attr('src', profile.thumbnailUrl);
+            thumbnail.append(image);
+          }
         });
       }
     };
