@@ -46,6 +46,15 @@
             list.append(li);
           });
           $(this).find('.urls').append(list);
+
+          var imsList = $('<ul class="ims-list"></ul>');
+          $.each(profile.ims, function() {
+            var h6 = $('<h6></h6>').text(this.type);
+            var p = $('<p></p>').text(this.value);
+            var li = $('<li class="ims-item"></li>').append(h6).append(p);
+            imsList.append(li);
+          });
+          $(this).find('.ims').append(imsList);
         });
       }
     };

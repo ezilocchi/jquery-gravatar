@@ -16,12 +16,23 @@
           "value":"http://www.linkedin.com/in/myProfileOnLinkedin",
           "title":"on LinkedIn"
         };
-      this.expectedUrls = [ this.myGithubUrl, this.myLinkedinUrl ];
+      var expectedUrls = [ this.myGithubUrl, this.myLinkedinUrl ];
+
+      this.myGtalk = {
+          "type":"gtalk",
+          "value":"myProfile@gmail.com"
+        };
+      this.mySkype = {
+          "type":"skype",
+          "value":"my.profile"
+        };
+      var expectedIms = [ this.myGtalk, this.mySkype ];
 
       var expectedProfile = {
         displayName: this.expectedDisplayName,
         thumbnailUrl: this.expectedThumbnailUrl,
-        urls: this.expectedUrls
+        urls: expectedUrls,
+        ims: expectedIms
       };
 
       this.response = { entry: [ expectedProfile ] };
@@ -76,6 +87,22 @@
     equal(githubUrl.attr('href'), this.myGithubUrl.value, 'should render the url value as a.href');
     equal(linkedinUrl.text(), this.myLinkedinUrl.title, 'should render the url title as text');
     equal(linkedinUrl.attr('href'), this.myLinkedinUrl.value, 'should render the url value as a.href');
+  });
+
+  test('ims list', function() {
+    expect(4);
+    this.stub($, 'ajax').yieldsTo('success', this.response);
+
+    var myGravatar = this.fixture.find('#gravatar-profile .gravatar').gravatar(this.profile);
+
+    var ims = myGravatar.find('.ims ul li');
+    var gtalk = ims.first();
+    var skype = ims.last();
+
+    equal(gtalk.find('h6').text(), this.myGtalk.type, 'should render type as label');
+    equal(gtalk.find('p').text(), this.myGtalk.value, 'should render value as text');
+    equal(skype.find('h6').text(), this.mySkype.type, 'should render type as label');
+    equal(skype.find('p').text(), this.mySkype.value, 'should render value as text');
   });
 
 }(jQuery));
