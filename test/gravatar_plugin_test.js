@@ -28,8 +28,21 @@
         };
       var expectedIms = [ this.myGtalk, this.mySkype ];
 
+      this.expectedEmail = 'myProfile@email.com';
+      var emails = [
+        {
+          "primary": "true",
+          "value": this.expectedEmail
+        },
+        {
+          "primary": "false",
+          "value": 'justAnother@email.com'
+        }
+      ];
+
       var expectedProfile = {
         displayName: this.expectedDisplayName,
+        emails: emails,
         thumbnailUrl: this.expectedThumbnailUrl,
         urls: expectedUrls,
         ims: expectedIms
@@ -103,6 +116,17 @@
     equal(gtalk.find('p').text(), this.myGtalk.value, 'should render value as text');
     equal(skype.find('h6').text(), this.mySkype.type, 'should render type as label');
     equal(skype.find('p').text(), this.mySkype.value, 'should render value as text');
+  });
+
+  test('email', function() {
+    expect(1);
+    this.stub($, 'ajax').yieldsTo('success', this.response);
+
+    var myGravatar = this.fixture.find('#gravatar-profile .gravatar').gravatar(this.profile);
+
+    var email = myGravatar.find('.email').text();
+
+    equal(email, this.expectedEmail, 'should render the email');
   });
 
 }(jQuery));

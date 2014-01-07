@@ -55,6 +55,13 @@
             imsList.append(li);
           });
           $(this).find('.ims').append(imsList);
+
+          var template = $(this);
+          $.each(profile.emails, function() {
+            if(this.primary === "true") {
+              template.find('.email').text(this.value);
+            }
+          });
         });
       }
     };
