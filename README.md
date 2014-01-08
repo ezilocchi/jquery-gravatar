@@ -1,6 +1,6 @@
 # Gravatar jQuery Plugin
 
-A plugin for get and display users gravatar information
+A jQuery plugin for display profile gravatar information
 
 ## Getting Started
 
@@ -14,11 +14,19 @@ In your web page:
 ```html
 <script src="jquery.js"></script>
 <script src="dist/gravatar.min.js"></script>
+
 <script>
 jQuery(function($) {
-  //TODO: show an example
+  $('.gravatar').gravatar('myGrvatarProfile');
 });
 </script>
+
+<div class="gravatar">
+  <div class="displayName"></div>
+  <div class="email"></div>
+  <div class="thumbnailUrl"></div>
+  <div class="urls"></div>
+</div>
 ```
 
 ## Documentation
