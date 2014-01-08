@@ -16,7 +16,7 @@ In your web page:
 <script src="dist/gravatar.min.js"></script>
 <script>
 jQuery(function($) {
-  $.awesome(); // "awesome"
+  //TODO: show an example
 });
 </script>
 ```
