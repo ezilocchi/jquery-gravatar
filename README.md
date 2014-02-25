@@ -1,6 +1,6 @@
 # Gravatar jQuery Plugin
 
-A jQuery plugin for display profile gravatar information
+A jQuery plugin for displaying your profile gravatar information
 
 ## Getting Started
 
@@ -28,6 +28,8 @@ jQuery(function($) {
   <div class="urls"></div>
 </div>
 ```
+
+Take a look at the [Demo](http://moredevideas.com/jquery-gravatar/demo.html)
 
 ## Documentation
 _(Coming soon)_
