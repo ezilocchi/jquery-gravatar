@@ -1,0 +1,41 @@
+{
+  "name": "gravatar",
+  "version": "1.0.0",
+  "title": "jQuery Gravatar",
+  "author": {
+    "name": "Emiliano Zilocchi",
+    "email": "ezilocchi@gmail.com",
+    "url": "https://github.com/ezilocchi"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.9"
+  },
+  "description": "Gravatar widget is a standard jQuery Plugin for getting and displaying gravatar profile information",
+  "keywords": [
+    "jquery",
+    "gravatar",
+    "profile",
+    "widget",
+    "selection",
+    "preview",
+    "cross-domain",
+    "cross-site",
+    "resume"
+  ],
+  "homepage": "https://github.com/ezilocchi/jquery-gravatar",
+  "docs": "https://github.com/ezilocchi/jquery-gravatar/wiki",
+  "demo": "http://ezilocchi.github.io/jquery-gravatar/demo.html",
+  "bugs": "https://github.com/ezilocchi/jquery-gravatar/issues",
+  "maintainers": [
+    {
+      "name": "Emiliano Zilocchi",
+      "url": "https://github.com/ezilocchi"
+    }
+  ]
+}
