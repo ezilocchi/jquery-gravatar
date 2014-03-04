@@ -15,6 +15,9 @@
     "type": "git",
     "url": "https://github.com/ezilocchi/jquery-gravatar.git"
   },
+  "scripts": {
+    "test": "grunt test"
+  },
   "licenses": [
     {
       "type": "MIT"
