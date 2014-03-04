@@ -16,7 +16,7 @@
     "url": "https://github.com/ezilocchi/jquery-gravatar.git"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt default --verbose"
   },
   "licenses": [
     {
