@@ -39,3 +39,7 @@ _(Coming soon)_
 
 ## Release History
 _(Nothing yet)_
+
+## License
+Released under the [MIT license](http://www.opensource.org/licenses/MIT).
+
