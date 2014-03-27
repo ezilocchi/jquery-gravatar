@@ -119,14 +119,18 @@
   });
 
   test('email', function() {
-    expect(1);
+    expect(2);
     this.stub($, 'ajax').yieldsTo('success', this.response);
 
     var myGravatar = this.fixture.find('#gravatar-profile .gravatar').gravatar(this.profile);
+    var email = myGravatar.find('.email a');
 
-    var email = myGravatar.find('.email').text();
+    var gravatarEmail = email.text();
+    equal(gravatarEmail, this.expectedEmail, 'should render the email');
 
-    equal(email, this.expectedEmail, 'should render the email');
+    var mailTo = email.attr('href');
+    var expectedMailTo = 'mailto:' + gravatarEmail;
+    equal(mailTo, expectedMailTo, 'should set the mailto at href attribute');
   });
 
 }(jQuery));

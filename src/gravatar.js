@@ -59,7 +59,8 @@
           var template = $(this);
           $.each(profile.emails, function() {
             if(this.primary === "true") {
-              template.find('.email').text(this.value);
+              var mailTo = $('<a></a>').text(this.value).attr('href', 'mailto:' + this.value);
+              template.find('.email').append(mailTo);
             }
           });
         });
