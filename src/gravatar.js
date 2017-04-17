@@ -29,7 +29,12 @@
       profile: profile,
       success: function(profile) {
         that.each(function () {
-          $(this).find('.displayName').text(profile.displayName);
+          // Simple text values - look for the element with the same key, and append to it.
+          $.each(profile, function(key, value) {
+            if (typeof value === 'string') {
+              $('.' + key).text(value);
+            }
+          });
 
           var thumbnail = $(this).find('.thumbnailUrl');
           if(thumbnail.prop('tagName') === 'IMG') {
