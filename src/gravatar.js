@@ -13,7 +13,7 @@
       method: "GET",
       dataType: "JSONP",
       crossDomain: true,
-      url: 'http://en.gravatar.com/' + options.profile + '.json',
+      url: '//en.gravatar.com/' + options.profile + '.json',
       success: function(response) {
         var profile = response.entry[0];
         options.success(profile);
